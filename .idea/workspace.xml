@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6327410a-8b08-487f-bf50-5f155bc2f3eb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/input_email.js" afterPath="$PROJECT_DIR$/src/components/input_email.js" />
-    </list>
+    <list default="true" id="6327410a-8b08-487f-bf50-5f155bc2f3eb" name="Default" comment="" />
     <ignored path="auth_react.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
