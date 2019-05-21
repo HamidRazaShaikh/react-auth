@@ -22,10 +22,9 @@ class FilledTextFields extends React.Component {
         super (props)
     }
 
-    //handleChangeText = (e) => {
-    //    this.setState ({[e.target.name] : e.target.value})
-    //
-    //}
+    handleChangeText = (e) => {
+    this.setState ({[e.target.name] : e.target.value})
+    }
 
     handleAddUser = () => {
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then (function (data) { console.log(data)})
@@ -47,6 +46,16 @@ class FilledTextFields extends React.Component {
         });
     }
 
+    handleSignoutUser = () => {
+        firebase.auth().signOut().then(function() {
+            alert ("Sign-out successful.")
+        }).catch(function(error) {
+            alert ("An error happened.")
+        });
+
+        this.setState ({email : "" , password : ""})
+    }
+
 
 
     render() {
@@ -65,7 +74,7 @@ class FilledTextFields extends React.Component {
                             autoComplete="email"
                             margin="normal"
                             variant="filled"
-                            //onChange = {this.handleChangeText}
+                            onChange = {this.handleChangeText}
                             value = {this.state.email}
                             />
 
@@ -79,7 +88,7 @@ class FilledTextFields extends React.Component {
                             autoComplete="current-password"
                             margin="normal"
                             variant="filled"
-                            //onChange = {this.handleChangeText}
+                            onChange = {this.handleChangeText}
                             value = {this.state.password}
                             />
 
@@ -91,6 +100,9 @@ class FilledTextFields extends React.Component {
                         </Button>
                         <Button variant="outlined" color="secondary"  onClick = {this.handleSignUpUser}>
                             Signup
+                        </Button>
+                        <Button variant="outlined" color="secondary"  onClick = {this.handleSignoutUser}>
+                            Signout
                         </Button>
                     </div>
 
