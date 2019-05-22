@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from './configuration.js';
 
 
+
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -15,11 +16,15 @@ class FilledTextFields extends React.Component {
     state = {
 
         email : "",
-        password : ""
+        password : "",
+        message : false,
+        mess : ""
     }
 
     constructor (props) {
         super (props)
+
+
     }
 
     handleChangeText = (e) => {
@@ -31,26 +36,32 @@ class FilledTextFields extends React.Component {
 
             .catch
         (function(error) {
-            console.log(error)
+         alert(error.message)
 
         });
     }
 
     handleSignUpUser = () => {
-        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then (function (data) { console.log(data)})
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then (function (data)
+        { console.log(data);
+
+        })
 
             .catch
         (function(error) {
-            console.log(error)
+            alert(error.message)
+
+
 
         });
     }
 
     handleSignoutUser = () => {
         firebase.auth().signOut().then(function() {
-            alert ("Sign-out successful.")
         }).catch(function(error) {
-            alert ("An error happened.")
+
+            alert(error.message)
+
         });
 
         this.setState ({email : "" , password : ""})
@@ -65,6 +76,8 @@ class FilledTextFields extends React.Component {
 
             <div>
 
+
+
                     <div>
                         <TextField
                             id="filled-email-input"
@@ -76,6 +89,7 @@ class FilledTextFields extends React.Component {
                             variant="filled"
                             onChange = {this.handleChangeText}
                             value = {this.state.email}
+                            style = {{marginLeft: 300 , width : 490}}
                             />
 
                     </div>
@@ -90,18 +104,19 @@ class FilledTextFields extends React.Component {
                             variant="filled"
                             onChange = {this.handleChangeText}
                             value = {this.state.password}
+                            style = {{marginLeft: 300 , width : 490}}
                             />
 
                     </div>
 
                     <div>
-                        <Button variant="outlined" color="primary" onClick = {this.handleAddUser}>
+                        <Button variant="outlined" color="primary" onClick = {this.handleAddUser}  style = {{marginLeft: 300}}>
                             Register
                         </Button>
-                        <Button variant="outlined" color="secondary"  onClick = {this.handleSignUpUser}>
+                        <Button variant="outlined" color="secondary"  onClick = {this.handleSignUpUser} style = {{marginLeft: 100}}>
                             Signup
                         </Button>
-                        <Button variant="outlined" color="secondary"  onClick = {this.handleSignoutUser}>
+                        <Button variant="outlined" color="secondary"  onClick = {this.handleSignoutUser} style = {{marginLeft: 100}}>
                             Signout
                         </Button>
                     </div>
