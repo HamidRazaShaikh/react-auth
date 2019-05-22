@@ -1,5 +1,8 @@
 import React from 'react';
 import firebase from './configuration.js';
+import { FacebookLoginButton } from "react-social-login-buttons";
+import { GoogleLoginButton } from "react-social-login-buttons";
+
 
 
 
@@ -67,9 +70,35 @@ class FilledTextFields extends React.Component {
         this.setState ({email : "" , password : ""})
     }
 
+    handleGoogleAuth = ()=> {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+        firebase.auth().signInWithPopup(provider)
+            .then(function (data) {
+                console.log(data);
+            }).catch(function (error) {
+                console.log(error);
+                alert(error.message)
+            });
+
+    }
+
+    handleFacebookAuth = () =>  {
+        var provider = new firebase.auth.FacebookAuthProvider ();
+
+        firebase.auth().signInWithPopup(provider)
+            .then(function (data) {
+                console.log(data);
+            }).catch(function (error) {
+                console.log(error);
+                alert(error.message)
+            });
+    }
 
 
-    render() {
+
+    render(){
 
 
         return (
@@ -120,6 +149,13 @@ class FilledTextFields extends React.Component {
                             Signout
                         </Button>
                     </div>
+
+                    <FacebookLoginButton onClick={this.handleFacebookAuth} style = {{marginLeft: 300 , width : 470}} />
+                     <GoogleLoginButton onClick={this.handleGoogleAuth} style = {{marginLeft: 300 , width : 470}} />
+
+
+
+
 
             </div>
 
